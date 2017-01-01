@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DesignView: UIView {
+class DesignShadowView: UIView {
 
 
     override func awakeFromNib() {

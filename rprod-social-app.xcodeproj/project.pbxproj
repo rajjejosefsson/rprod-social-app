@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		DCB93609A0FB1FA20B557F2A /* Pods_rprod_social_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A46E994F7CE0622E6585F2 /* Pods_rprod_social_app.framework */; };
+		F9B27A4D1E19BC0D000FE214 /* DesignShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B27A4C1E19BC0D000FE214 /* DesignShadowView.swift */; };
+		F9B27A501E19BC94000FE214 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B27A4F1E19BC94000FE214 /* Constants.swift */; };
+		F9B27A521E19BDF0000FE214 /* DesignRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B27A511E19BDF0000FE214 /* DesignRoundButton.swift */; };
+		F9B27A541E19C055000FE214 /* DesignCornerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B27A531E19C055000FE214 /* DesignCornerButton.swift */; };
 		F9B5A29E1E199E9100424302 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B5A29D1E199E9100424302 /* AppDelegate.swift */; };
 		F9B5A2A01E199E9100424302 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B5A29F1E199E9100424302 /* SignInVC.swift */; };
 		F9B5A2A31E199E9100424302 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B5A2A11E199E9100424302 /* Main.storyboard */; };
@@ -19,6 +23,10 @@
 /* Begin PBXFileReference section */
 		17A46E994F7CE0622E6585F2 /* Pods_rprod_social_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rprod_social_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B92A0725585448753DA1E45 /* Pods-rprod-social-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rprod-social-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rprod-social-app/Pods-rprod-social-app.debug.xcconfig"; sourceTree = "<group>"; };
+		F9B27A4C1E19BC0D000FE214 /* DesignShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignShadowView.swift; sourceTree = "<group>"; };
+		F9B27A4F1E19BC94000FE214 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F9B27A511E19BDF0000FE214 /* DesignRoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignRoundButton.swift; sourceTree = "<group>"; };
+		F9B27A531E19C055000FE214 /* DesignCornerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCornerButton.swift; sourceTree = "<group>"; };
 		F9B5A29A1E199E9100424302 /* rprod-social-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rprod-social-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B5A29D1E199E9100424302 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9B5A29F1E199E9100424302 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -71,6 +79,9 @@
 		F9B27A491E19A062000FE214 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F9B27A4C1E19BC0D000FE214 /* DesignShadowView.swift */,
+				F9B27A511E19BDF0000FE214 /* DesignRoundButton.swift */,
+				F9B27A531E19C055000FE214 /* DesignCornerButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -88,6 +99,14 @@
 			children = (
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		F9B27A4E1E19BC85000FE214 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F9B27A4F1E19BC94000FE214 /* Constants.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		F9B5A2911E199E9100424302 = {
@@ -111,6 +130,7 @@
 		F9B5A29C1E199E9100424302 /* rprod-social-app */ = {
 			isa = PBXGroup;
 			children = (
+				F9B27A4E1E19BC85000FE214 /* Utils */,
 				F9B27A4B1E19A070000FE214 /* Models */,
 				F9B27A4A1E19A067000FE214 /* Resources */,
 				F9B27A491E19A062000FE214 /* Views */,
@@ -250,6 +270,10 @@
 			files = (
 				F9B5A2A01E199E9100424302 /* SignInVC.swift in Sources */,
 				F9B5A29E1E199E9100424302 /* AppDelegate.swift in Sources */,
+				F9B27A541E19C055000FE214 /* DesignCornerButton.swift in Sources */,
+				F9B27A4D1E19BC0D000FE214 /* DesignShadowView.swift in Sources */,
+				F9B27A501E19BC94000FE214 /* Constants.swift in Sources */,
+				F9B27A521E19BDF0000FE214 /* DesignRoundButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
