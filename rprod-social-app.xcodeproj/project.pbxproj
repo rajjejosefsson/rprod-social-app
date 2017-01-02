@@ -22,6 +22,7 @@
 		F9F5DC2D1E1A79D0000FF32E /* DesignCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC2C1E1A79D0000FF32E /* DesignCircleView.swift */; };
 		F9F5DC2F1E1A823D000FF32E /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC2E1E1A823D000FF32E /* PostCell.swift */; };
 		F9F5DC321E1A8CB8000FF32E /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC311E1A8CB8000FF32E /* DataService.swift */; };
+		F9F5DC341E1AA2FF000FF32E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC331E1AA2FF000FF32E /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		F9F5DC2C1E1A79D0000FF32E /* DesignCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCircleView.swift; sourceTree = "<group>"; };
 		F9F5DC2E1E1A823D000FF32E /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		F9F5DC311E1A8CB8000FF32E /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		F9F5DC331E1AA2FF000FF32E /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		FC55FFE7323A09E8CEAF1611 /* Pods-rprod-social-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rprod-social-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-rprod-social-app/Pods-rprod-social-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 		F9B27A4B1E19A070000FE214 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F9F5DC331E1AA2FF000FF32E /* Post.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F5DC2D1E1A79D0000FF32E /* DesignCircleView.swift in Sources */,
+				F9F5DC341E1AA2FF000FF32E /* Post.swift in Sources */,
 				F9B5A2A01E199E9100424302 /* SignInVC.swift in Sources */,
 				F9F5DC291E19E13C000FF32E /* FeedVC.swift in Sources */,
 				F9B5A29E1E199E9100424302 /* AppDelegate.swift in Sources */,

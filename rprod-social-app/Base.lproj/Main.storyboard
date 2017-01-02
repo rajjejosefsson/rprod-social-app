@@ -181,7 +181,7 @@
                                     <constraint firstAttribute="bottom" secondItem="eHL-uX-gzS" secondAttribute="bottom" constant="16" id="SV3-RZ-eaP"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-dU-Rvn">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-dU-Rvn" customClass="DesignShadowView" customModule="rprod_social_app" customModuleProvider="target">
                                 <rect key="frame" x="16" y="96" width="343" height="65"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dkq-aJ-GqW">
