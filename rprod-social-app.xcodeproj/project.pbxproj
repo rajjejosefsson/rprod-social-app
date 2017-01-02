@@ -20,6 +20,7 @@
 		F9F5DC291E19E13C000FF32E /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC281E19E13C000FF32E /* FeedVC.swift */; };
 		F9F5DC2B1E1A6FC8000FF32E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9F5DC2A1E1A6FC8000FF32E /* Assets.xcassets */; };
 		F9F5DC2D1E1A79D0000FF32E /* DesignCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC2C1E1A79D0000FF32E /* DesignCircleView.swift */; };
+		F9F5DC2F1E1A823D000FF32E /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC2E1E1A823D000FF32E /* PostCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		F9F5DC281E19E13C000FF32E /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		F9F5DC2A1E1A6FC8000FF32E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9F5DC2C1E1A79D0000FF32E /* DesignCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCircleView.swift; sourceTree = "<group>"; };
+		F9F5DC2E1E1A823D000FF32E /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		FC55FFE7323A09E8CEAF1611 /* Pods-rprod-social-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rprod-social-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-rprod-social-app/Pods-rprod-social-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 				F9B27A511E19BDF0000FE214 /* DesignCircleButton.swift */,
 				F9B27A531E19C055000FE214 /* DesignCornerButton.swift */,
 				F9F5DC2C1E1A79D0000FF32E /* DesignCircleView.swift */,
+				F9F5DC2E1E1A823D000FF32E /* PostCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				F9F5DC291E19E13C000FF32E /* FeedVC.swift in Sources */,
 				F9B5A29E1E199E9100424302 /* AppDelegate.swift in Sources */,
 				F9B27A541E19C055000FE214 /* DesignCornerButton.swift in Sources */,
+				F9F5DC2F1E1A823D000FF32E /* PostCell.swift in Sources */,
 				F9B27A4D1E19BC0D000FE214 /* DesignShadowView.swift in Sources */,
 				F9B27A501E19BC94000FE214 /* Constants.swift in Sources */,
 				F9B27A521E19BDF0000FE214 /* DesignCircleButton.swift in Sources */,
