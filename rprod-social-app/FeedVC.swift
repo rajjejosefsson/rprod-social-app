@@ -19,7 +19,7 @@ class FeedVC: UIViewController {
 
     
 
-    @IBAction func signoutBtnTapped(_ sender: Any) {
+    @IBAction func signoutBtnTapped(_ sender: UIButton) {
         
         let keychain = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         print("RASMUS: Removed UID from keychain: \(keychain)")
