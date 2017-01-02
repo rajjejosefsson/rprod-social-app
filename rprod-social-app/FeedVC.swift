@@ -61,10 +61,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let post = posts[indexPath.row]
         print("TABLEPOST: \(post.text) \n")
         
-        
-       return tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostCell
-        
-      //  return UITableViewCell()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
+            cell.configureCell(post: post)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    
     }
     
     

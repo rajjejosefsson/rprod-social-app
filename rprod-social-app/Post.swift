@@ -51,7 +51,7 @@ class Post {
             self._imageUrl = imageUrl
         }
         
-        if let likes = postData["Likes"] as? Int {
+        if let likes = postData["likes"] as? Int {
             self._likes = likes
         }
         

@@ -11,17 +11,18 @@ import UIKit
 class PostCell: UITableViewCell {
 
     @IBOutlet weak var profileImage: DesignCircleView!
-    
     @IBOutlet weak var usernameLabel: UILabel!
-
     @IBOutlet weak var postedImage: UIImageView!
-    
     @IBOutlet weak var postedText: UITextView!
-    
     @IBOutlet weak var numberOfLikesLabel: UILabel!
     
+    var post: Post!
     
-    func configureCell() {
+    func configureCell(post: Post) {
+        self.post = post
+    
+        self.postedText.text = post.text
+        self.numberOfLikesLabel.text = "\(post.likes)"
         
     }
 }
