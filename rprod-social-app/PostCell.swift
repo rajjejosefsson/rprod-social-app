@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PostCell: UITableViewCell {
 
@@ -18,11 +19,38 @@ class PostCell: UITableViewCell {
     
     var post: Post!
     
-    func configureCell(post: Post) {
+    func configureCell(post: Post, image: UIImage? = nil) {
         self.post = post
-    
         self.postedText.text = post.text
         self.numberOfLikesLabel.text = "\(post.likes)"
         
+        if image != nil {
+            self.postedImage.image = image
+            // image is chaced
+        } else {
+            
+            let imageRef = FIRStorage.storage().reference(forURL: post.imageUrl)
+            
+            imageRef.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                // Asynchronously downloads the object at the FIRStorageReference to an NSData object in memory
+                
+                if error != nil {
+                    print("RASMUS: Unable to download image from Firebase Storage, size limit 2mb, more info \(error.debugDescription)")
+                } else {
+                    print("RASMUS: Image downloaded from Firebase Storage")
+                    if let imageData = data {
+                        if let image = UIImage(data: imageData) {
+                           
+                            self.postedImage.image = image
+                            FeedVC.imageChache.setObject(image, forKey: post.imageUrl as NSString)
+
+                        }
+                    }
+                }
+            })
+                
+        }
     }
+    
 }
+

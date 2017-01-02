@@ -11,13 +11,20 @@ import Firebase
 
 
 let DB_ROOT = FIRDatabase.database().reference()
+let STORAGE_ROOT = FIRStorage.storage().reference()
 
 class DataService {
-
+    // Creates the singleton
     static let ds = DataService()
     
+    // Database reference
     private var _REF_POSTS = DB_ROOT.child("posts")
     private var _REF_USERS = DB_ROOT.child("users")
+    
+    // Storage reference
+    private var _REF_POST_IMAGES = STORAGE_ROOT.child("post-images")
+    
+    
     
     var REF_POSTS: FIRDatabaseReference {
         return _REF_POSTS
@@ -25,6 +32,12 @@ class DataService {
     
     var REF_USERS: FIRDatabaseReference {
         return _REF_USERS
+    }
+    
+    
+    
+    var REF_POST_IMAGES: FIRStorageReference {
+        return _REF_POST_IMAGES
     }
     
     

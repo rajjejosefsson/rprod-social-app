@@ -21,6 +21,7 @@ class DesignCircleButton: UIButton {
       //  layer.cornerRadius = self.frame.width / 2
        
         imageView?.contentMode = .scaleAspectFit
+    
     }
     
     // To get frame it will not be rendered before so we have to use it here

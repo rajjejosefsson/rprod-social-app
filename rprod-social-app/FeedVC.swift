@@ -10,31 +10,36 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var imageAddButton: DesignCornerButton!
+    
     
     var posts = [Post]()
+    var imagePicker: UIImagePickerController!
+    
+    static var imageChache: NSCache<NSString, UIImage> = NSCache()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
-        
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
     
         
         // init the listener as fast as posible, this is the place
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
   
-            // print(snapshot.value)
-            
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
 
                 self.posts = []
 
-                
                 for snap in snapshot {
                     print("SNAP: \(snap)")
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
@@ -45,9 +50,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             }
-            
             self.tableView.reloadData()
-
         })
         
         
@@ -62,8 +65,17 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         print("TABLEPOST: \(post.text) \n")
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
-            cell.configureCell(post: post)
-            return cell
+            
+            
+            if let image = FeedVC.imageChache.object(forKey: post.imageUrl as NSString) {
+                cell.configureCell(post: post, image: image)
+                return cell
+            } else {
+                cell.configureCell(post: post)
+                return cell
+            }
+            
+         
         } else {
             return UITableViewCell()
         }
@@ -77,6 +89,22 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            
+            imageAddButton.setImage(image, for: .normal)
+            
+        } else {
+            print("RASMUS: A valid image wasn't selected")
+        }
+        
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func addImageBtnTapped(_ sender: UIButton) {
+        present(imagePicker, animated: true, completion: nil)
+    }
     
 
     @IBAction func signoutBtnTapped(_ sender: UIButton) {
