@@ -30,9 +30,11 @@ class DataService {
     
     func createFirebaseDBUser(uid: String, userData: Dictionary<String, String>) {
         REF_USERS.child(uid).updateChildValues(userData)
-        
         // If uid doesn't exists already it will create one and pass its userData
         // Updates the values at the specified paths in the dictionary without overwriting other keys at this location.
     }
+    
+    
+    
     
 }

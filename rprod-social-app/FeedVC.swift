@@ -19,13 +19,19 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        
+        // init the listener as fast as posible, this is the place
+        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            print(snapshot.value)
+        })
+        
     }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      
        return tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostCell
-            
         
       //  return UITableViewCell()
     }
@@ -34,6 +40,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
+    
+    
+    
     
 
     @IBAction func signoutBtnTapped(_ sender: UIButton) {
@@ -48,7 +57,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        
         
         dismiss(animated: true, completion: nil)
     }
