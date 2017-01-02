@@ -35,21 +35,7 @@ class SignInVC: UIViewController {
     }
     
     
-    func firebaseAuth(_ fireCredential: FIRAuthCredential) {
-        FIRAuth.auth()?.signIn(with: fireCredential, completion: { (fireUser, error) in
-            if error != nil {
-                print("RASMUS: Unable to autenticate with Firebase - \(error)")
-            } else {
-                print("Rasmus: User Successfully autenticated with Firebase")
-                
-                if let user = fireUser {
-                    let userData = ["provider": fireCredential.provider]
-                    self.completeFirebaseSignIn(uid: user.uid, userData: userData)
-                }
-            }
-        })
-    }
-    
+ 
     
     func completeFirebaseSignIn(uid: String, userData: Dictionary<String, String>) {
       
@@ -63,19 +49,24 @@ class SignInVC: UIViewController {
     }
     
     
-    @IBAction func signInBtnTapped(_ sender: Any) {
+    
+
+    
+    func signInWithEmailAndPassword() {
         
         if let email = emailField.text, let password = passwordField.text {
+            // Sign in user with email and password
             FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-
                 if error == nil {
                     print("RASMUS: User Successfully signed in with Firebase")
                     if let user = user {
-                        let userData = ["provider": user.providerID]
+                        let userData: Dictionary<String, String> = ["provider": user.providerID, "email": user.email!]
                         self.completeFirebaseSignIn(uid: user.uid, userData: userData)
                     }
-
+                    
                 } else {
+                    
+                    // Create new user
                     FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
                         
                         if error != nil {
@@ -83,7 +74,8 @@ class SignInVC: UIViewController {
                         } else {
                             print("Rasmus: User Successfully Created")
                             if let user = user {
-                                let userData = ["provider": user.providerID]
+                                let userData: Dictionary<String, String> = ["provider": user.providerID, "email": user.email!]
+                                
                                 self.completeFirebaseSignIn(uid: user.uid, userData: userData)
                             }
                         }
@@ -91,16 +83,30 @@ class SignInVC: UIViewController {
                 }
             }
         }
-        
     }
     
     
     
+    // Sign in with Credentials
+    func firebaseAuth(_ fireCredential: FIRAuthCredential) {
+        FIRAuth.auth()?.signIn(with: fireCredential, completion: { (fireUser, error) in
+            if error != nil {
+                print("RASMUS: Unable to autenticate with Firebase - \(error)")
+            } else {
+                print("Rasmus: User Successfully autenticated with Firebase")
+                
+                if let user = fireUser {
+                    
+                    let userData: Dictionary<String, String> = ["provider": fireCredential.provider, "email": user.email!]
+                    self.completeFirebaseSignIn(uid: user.uid, userData: userData)
+                }
+            }
+        })
+    }
     
-    @IBAction func facebookBtnTapped(_ sender: Any) {
+    func signInWithFacebook() {
         let facebookLogin = FBSDKLoginManager()
         facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
-            
             if error != nil {
                 print("RASMUS: Unable to autenticate with facebook - \(error)")
             } else if result?.isCancelled == true {
@@ -110,9 +116,19 @@ class SignInVC: UIViewController {
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                 self.firebaseAuth(credential)
             }
-            
-            
         }
+    }
+   
+    
+    
+    
+    @IBAction func signInBtnTapped(_ sender: Any) {
+        signInWithEmailAndPassword()
+    }
+    
+
+    @IBAction func facebookBtnTapped(_ sender: Any) {
+        signInWithFacebook()
     }
 
 }

@@ -12,3 +12,9 @@ let SHADOW_GRAY: CGFloat = 120.0 / 255.0
 
 
 let KEY_UID = "uid"
+
+
+let KEY_TEXT = "text"
+let KEY_IMAGEURL = "imageUrl"
+let KEY_LIKES = "likes"
+let KEY_POSTDATE = "postDate"

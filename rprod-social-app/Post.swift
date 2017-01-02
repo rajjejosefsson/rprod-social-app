@@ -11,8 +11,10 @@ import Foundation
 class Post {
 
     private var _text: String!
+    private var _email: String!
     private var _imageUrl: String!
     private var _likes: Int!
+    private var _postDate: String!
     private var _postKey: String!
     
     
@@ -32,14 +34,25 @@ class Post {
         return _postKey
     }
     
+    var postDate: String {
+        return _postDate
+    }
     
-    init(text: String, imageUrl: String, likes: Int) {
+    var email: String {
+        return _email
+    }
+    
+    // used when creating the post
+    init(text: String, imageUrl: String, email: String, likes: Int) {
         self._text = text
         self._imageUrl = imageUrl
         self._likes = likes
+        self._email = email
+        self._postDate = postDate
     }
     
     
+    // used when loading data from snapshot into the view inside FeedVC in viewDidLoad
     init(postKey: String, postData: Dictionary<String, AnyObject>) {
         self._postKey = postKey
         
@@ -53,6 +66,14 @@ class Post {
         
         if let likes = postData["likes"] as? Int {
             self._likes = likes
+        }
+        
+        if let email = postData["email"] as? String {
+            self._email = email
+        }
+        
+        if let postDate = postData["postDate"] as? String {
+            self._postDate = postDate
         }
         
     }
