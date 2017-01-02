@@ -34,6 +34,7 @@ class SignInVC: UIViewController {
         }
     }
     
+    
     func firebaseAuth(_ fireCredential: FIRAuthCredential) {
         FIRAuth.auth()?.signIn(with: fireCredential, completion: { (fireUser, error) in
             if error != nil {
@@ -41,16 +42,20 @@ class SignInVC: UIViewController {
             } else {
                 print("Rasmus: User Successfully autenticated with Firebase")
                 
-                if let fireUser = fireUser {
-                    self.completeFirebaseSignIn(uid: fireUser.uid)
+                if let user = fireUser {
+                    let userData = ["provider": fireCredential.provider]
+                    self.completeFirebaseSignIn(uid: user.uid, userData: userData)
                 }
             }
         })
     }
     
     
-    func completeFirebaseSignIn(uid: String) {
-       let keychainData = KeychainWrapper.standard.set(uid, forKey: KEY_UID)
+    func completeFirebaseSignIn(uid: String, userData: Dictionary<String, String>) {
+      
+        DataService.ds.createFirebaseDBUser(uid: uid, userData: userData)
+        
+        let keychainData = KeychainWrapper.standard.set(uid, forKey: KEY_UID)
         // Automatically Login with keychain setup
         print("RASMUS: UID Saved to Keychain \(keychainData)")
         
@@ -66,7 +71,8 @@ class SignInVC: UIViewController {
                 if error == nil {
                     print("RASMUS: User Successfully signed in with Firebase")
                     if let user = user {
-                        self.completeFirebaseSignIn(uid: user.uid)
+                        let userData = ["provider": user.providerID]
+                        self.completeFirebaseSignIn(uid: user.uid, userData: userData)
                     }
 
                 } else {
@@ -77,7 +83,8 @@ class SignInVC: UIViewController {
                         } else {
                             print("Rasmus: User Successfully Created")
                             if let user = user {
-                                self.completeFirebaseSignIn(uid: user.uid)
+                                let userData = ["provider": user.providerID]
+                                self.completeFirebaseSignIn(uid: user.uid, userData: userData)
                             }
                         }
                     }

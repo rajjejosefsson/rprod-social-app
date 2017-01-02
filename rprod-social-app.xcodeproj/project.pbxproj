@@ -21,6 +21,7 @@
 		F9F5DC2B1E1A6FC8000FF32E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9F5DC2A1E1A6FC8000FF32E /* Assets.xcassets */; };
 		F9F5DC2D1E1A79D0000FF32E /* DesignCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC2C1E1A79D0000FF32E /* DesignCircleView.swift */; };
 		F9F5DC2F1E1A823D000FF32E /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC2E1E1A823D000FF32E /* PostCell.swift */; };
+		F9F5DC321E1A8CB8000FF32E /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC311E1A8CB8000FF32E /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		F9F5DC2A1E1A6FC8000FF32E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9F5DC2C1E1A79D0000FF32E /* DesignCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCircleView.swift; sourceTree = "<group>"; };
 		F9F5DC2E1E1A823D000FF32E /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		F9F5DC311E1A8CB8000FF32E /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		FC55FFE7323A09E8CEAF1611 /* Pods-rprod-social-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rprod-social-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-rprod-social-app/Pods-rprod-social-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +141,7 @@
 		F9B5A29C1E199E9100424302 /* rprod-social-app */ = {
 			isa = PBXGroup;
 			children = (
+				F9F5DC301E1A8C91000FF32E /* Services */,
 				F9B27A4E1E19BC85000FE214 /* Utils */,
 				F9B27A4B1E19A070000FE214 /* Models */,
 				F9B27A4A1E19A067000FE214 /* Resources */,
@@ -150,6 +153,14 @@
 				F9B27A551E19CE10000FE214 /* GoogleService-Info.plist */,
 			);
 			path = "rprod-social-app";
+			sourceTree = "<group>";
+		};
+		F9F5DC301E1A8C91000FF32E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F9F5DC311E1A8CB8000FF32E /* DataService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +297,7 @@
 				F9B27A4D1E19BC0D000FE214 /* DesignShadowView.swift in Sources */,
 				F9B27A501E19BC94000FE214 /* Constants.swift in Sources */,
 				F9B27A521E19BDF0000FE214 /* DesignCircleButton.swift in Sources */,
+				F9F5DC321E1A8CB8000FF32E /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
