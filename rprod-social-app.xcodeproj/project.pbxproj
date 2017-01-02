@@ -18,6 +18,7 @@
 		F9B5A2A31E199E9100424302 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B5A2A11E199E9100424302 /* Main.storyboard */; };
 		F9B5A2A51E199E9100424302 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9B5A2A41E199E9100424302 /* Assets.xcassets */; };
 		F9B5A2A81E199E9100424302 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B5A2A61E199E9100424302 /* LaunchScreen.storyboard */; };
+		F9F5DC291E19E13C000FF32E /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5DC281E19E13C000FF32E /* FeedVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		F9B5A2A41E199E9100424302 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B5A2A71E199E9100424302 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9B5A2A91E199E9100424302 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9F5DC281E19E13C000FF32E /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		FC55FFE7323A09E8CEAF1611 /* Pods-rprod-social-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rprod-social-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-rprod-social-app/Pods-rprod-social-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 			children = (
 				F9B5A29D1E199E9100424302 /* AppDelegate.swift */,
 				F9B5A29F1E199E9100424302 /* SignInVC.swift */,
+				F9F5DC281E19E13C000FF32E /* FeedVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9B5A2A01E199E9100424302 /* SignInVC.swift in Sources */,
+				F9F5DC291E19E13C000FF32E /* FeedVC.swift in Sources */,
 				F9B5A29E1E199E9100424302 /* AppDelegate.swift in Sources */,
 				F9B27A541E19C055000FE214 /* DesignCornerButton.swift in Sources */,
 				F9B27A4D1E19BC0D000FE214 /* DesignShadowView.swift in Sources */,
