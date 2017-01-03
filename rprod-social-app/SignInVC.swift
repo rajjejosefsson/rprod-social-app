@@ -5,7 +5,6 @@
 //  Created by Rasmus Josefsson on 2017-01-01.
 //  Copyright © 2017 Rasmus Josefsson. All rights reserved.
 //
-
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
@@ -24,9 +23,9 @@ class SignInVC: UIViewController {
         loginButton.center = self.view.center
         view.addSubview(loginButton)
          */
-       
     }
 
+    
     override func viewDidAppear(_ animated: Bool) {
         // Segue should be performed here and not inside didappear because its not yet intilized
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
@@ -35,12 +34,9 @@ class SignInVC: UIViewController {
     }
     
     
- 
-    
     func completeFirebaseSignIn(uid: String, userData: Dictionary<String, String>) {
       
         DataService.ds.createFirebaseDBUser(uid: uid, userData: userData)
-        
         let keychainData = KeychainWrapper.standard.set(uid, forKey: KEY_UID)
         // Automatically Login with keychain setup
         print("RASMUS: UID Saved to Keychain \(keychainData)")
@@ -49,11 +45,8 @@ class SignInVC: UIViewController {
     }
     
     
-    
 
-    
     func signInWithEmailAndPassword() {
-        
         if let email = emailField.text, let password = passwordField.text {
             // Sign in user with email and password
             FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
@@ -75,7 +68,6 @@ class SignInVC: UIViewController {
                             print("Rasmus: User Successfully Created")
                             if let user = user {
                                 let userData: Dictionary<String, String> = ["provider": user.providerID, "email": user.email!]
-                                
                                 self.completeFirebaseSignIn(uid: user.uid, userData: userData)
                             }
                         }
@@ -85,10 +77,8 @@ class SignInVC: UIViewController {
         }
     }
     
-    
-    
-    // Sign in with Credentials
-    func firebaseAuth(_ fireCredential: FIRAuthCredential) {
+
+    func signInWithCredential(_ fireCredential: FIRAuthCredential) {
         FIRAuth.auth()?.signIn(with: fireCredential, completion: { (fireUser, error) in
             if error != nil {
                 print("RASMUS: Unable to autenticate with Firebase - \(error)")
@@ -104,6 +94,7 @@ class SignInVC: UIViewController {
         })
     }
     
+    
     func signInWithFacebook() {
         let facebookLogin = FBSDKLoginManager()
         facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
@@ -114,7 +105,7 @@ class SignInVC: UIViewController {
             } else {
                 print("Rasmus: User Successfully autenticated with Facebook")
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                self.firebaseAuth(credential)
+                self.signInWithCredential(credential)
             }
         }
     }

@@ -34,6 +34,14 @@ class DataService {
         return _REF_USERS
     }
     
+    var REF_CURRENT_USER: FIRDatabaseReference {
+       
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        let user = REF_USERS.child(uid!)
+      
+        return user
+    }
+    
     
     var REF_POST_IMAGES: FIRStorageReference {
         return _REF_POST_IMAGES

@@ -15,6 +15,7 @@ let KEY_UID = "uid"
 
 
 let KEY_TEXT = "text"
-let KEY_IMAGEURL = "imageUrl"
+let KEY_IMAGE_URL = "imageUrl"
 let KEY_LIKES = "likes"
-let KEY_POSTDATE = "postDate"
+let KEY_POST_DATE = "postDate"
+let KEY_USER_ID = "userId"

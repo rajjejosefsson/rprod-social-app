@@ -21,6 +21,7 @@ class FeedVC:
     @IBOutlet weak var imageAddButton: DesignCornerButton!
     @IBOutlet weak var textField: UITextField!
     
+    
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
     var imageSelected = false
@@ -37,9 +38,12 @@ class FeedVC:
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
     
+        let test = DataService.ds.REF_CURRENT_USER.key
+
+        print("\(test)")
         
         // init the listener as fast as posible, this is the place
-        DataService.ds.REF_POSTS.queryOrdered(byChild: KEY_POSTDATE).observe(.value, with: { (snapshot) in
+        DataService.ds.REF_POSTS.queryOrdered(byChild: KEY_POST_DATE).observe(.value, with: { (snapshot) in
   
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
 
@@ -71,11 +75,10 @@ class FeedVC:
             
             if let image = FeedVC.imageChache.object(forKey: post.imageUrl as NSString) {
                 cell.configureCell(post: post, image: image)
-                return cell
             } else {
                 cell.configureCell(post: post)
-                return cell
             }
+            return cell
         } else {
             return UITableViewCell()
         }
@@ -91,7 +94,6 @@ class FeedVC:
         
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
         // info could be video etc
-            
             imageAddButton.setImage(image, for: .normal)
             imageSelected = true
         } else {
@@ -135,20 +137,20 @@ class FeedVC:
                     if let url = downloadURL {
                         self.postToFirebase(imageUrl: url)
                     }
-                    
-                    
                 }
             })
         }
     }
     
+    
     func postToFirebase(imageUrl: String) {
-     
+        
         let post: Dictionary<String, AnyObject> = [
             KEY_TEXT: textField.text as AnyObject,
-            KEY_IMAGEURL: imageUrl as AnyObject,
+            KEY_IMAGE_URL: imageUrl as AnyObject,
             KEY_LIKES: 0 as AnyObject,
-            KEY_POSTDATE: FIRServerValue.timestamp() as? [String : Any] as AnyObject
+            KEY_USER_ID: DataService.ds.REF_CURRENT_USER.key as AnyObject,
+            KEY_POST_DATE: FIRServerValue.timestamp() as? [String : Any] as AnyObject
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
@@ -157,8 +159,6 @@ class FeedVC:
         imageSelected = false
         textField.text = ""
         imageAddButton.setImage(UIImage(named: "add-image"), for: .normal)
-
-        
     }
     
 
@@ -174,7 +174,6 @@ class FeedVC:
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        
         dismiss(animated: true, completion: nil)
     }
 
