@@ -48,7 +48,6 @@ class Post {
         self._text = text
         self._imageUrl = imageUrl
         self._numberOfLikes = numberOfLikes
-        
         self._userId = userId
         self._postDate = postDate
     }

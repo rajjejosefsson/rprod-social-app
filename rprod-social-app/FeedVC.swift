@@ -15,10 +15,13 @@ class FeedVC:
     UITableViewDelegate,
     UITableViewDataSource,
     UIImagePickerControllerDelegate,
-    UINavigationControllerDelegate {
-    
+    UINavigationControllerDelegate, MyCellDelegate
+{
+    @IBOutlet weak var navProfileImage: DesignCircleButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var imageAddButton: DesignCornerButton!
+
+    @IBOutlet weak var imageAddButton: DesignCornerShadowButton!
+    
     @IBOutlet weak var textField: UITextField!
     
     
@@ -34,39 +37,47 @@ class FeedVC:
         tableView.delegate = self
         tableView.dataSource = self
         
+        NavigationHelper.nav.initAuthedUserImageTo(uiButton: navProfileImage)
+
+        
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
+    }
+
     
-        let test = DataService.ds.REF_CURRENT_USER.key
-
-        print("\(test)")
+    override func viewDidAppear(_ animated: Bool) {
         
-        // init the listener as fast as posible, this is the place
+        
+        // Load all data into an array of posts
         DataService.ds.REF_POSTS.queryOrdered(byChild: KEY_POST_DATE).observe(.value, with: { (snapshot) in
-  
+            
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-
+                
                 self.posts = []
                 
                 for snap in snapshot {
                     print("SNAP: \(snap)")
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                    
+                        
                         let key = snap.key // key of the snapshot
+                        
+                        // Init of the post to get key value pair
                         let post = Post(postKey: key, postData: postDict)
                         self.posts.append(post)
                     }
                 }
             }
-            
-        
             self.posts.reverse()
             self.tableView.reloadData()
         })
-    }
-
+        
     
+        
+    
+    }
+    
+  
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      
         let post = posts[indexPath.row]
@@ -78,6 +89,8 @@ class FeedVC:
             } else {
                 cell.configureCell(post: post)
             }
+            
+            cell.delegate = self
             return cell
         } else {
             return UITableViewCell()
@@ -97,10 +110,11 @@ class FeedVC:
             imageAddButton.setImage(image, for: .normal)
             imageSelected = true
         } else {
-            print("RASMUS: A valid image wasn't selected")
+            print("MESSAGE: A valid image wasn't selected")
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }
+    
     
     
     @IBAction func addImageBtnTapped(_ sender: UIButton) {
@@ -111,34 +125,20 @@ class FeedVC:
     @IBAction func postBtnTapped(_ sender: UIButton) {
         
         guard let text = textField.text, text != "" else {
-            print("RASMUS: Text must be entered")
+            print("MESSAGE: Text must be entered")
             return
         }
         
         guard let image = imageAddButton.image(for: .normal), imageSelected == true else {
-            print("RASMUS: Image must be selected")
+            print("MESSAGE: Image must be selected")
             return
         }
         
         
-        if let imageData = UIImageJPEGRepresentation(image, 0.2) {
-            let imageUID = NSUUID().uuidString
-            let metadata = FIRStorageMetadata()
-            metadata.contentType = "image/jpeg"
-
-            DataService.ds.REF_POST_IMAGES.child(imageUID).put(imageData, metadata: metadata, completion: { (metadata, error) in
-                if error != nil {
-                    print("RASMUS: Unable to upload image to firebase storage")
-                } else {
-                    print("RASMUS: Image Uploaded to firebase storage")
-                    
-                    let downloadURL = metadata?.downloadURL()?.absoluteString
-                    
-                    if let url = downloadURL {
-                        self.postToFirebase(imageUrl: url)
-                    }
-                }
-            })
+        let postsStorageRef = DataService.ds.REF_POST_IMAGES
+        
+        DataService.ds.saveImageToStorage(storageRef: postsStorageRef ,image: image) { responseUrl in
+           self.postToFirebase(imageUrl: responseUrl)
         }
     }
     
@@ -149,32 +149,82 @@ class FeedVC:
             KEY_TEXT: textField.text as AnyObject,
             KEY_IMAGE_URL: imageUrl as AnyObject,
             KEY_LIKES: 0 as AnyObject,
-            KEY_USER_ID: DataService.ds.REF_CURRENT_USER.key as AnyObject,
+            KEY_USER_ID: DataService.ds.REF_AUTHED_USER.key as AnyObject,
             KEY_POST_DATE: FIRServerValue.timestamp() as? [String : Any] as AnyObject
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        // Generates a auto id for key
         firebasePost.setValue(post)
         
+        DataService.ds.updateUserPostCount()
+        
+        // Reset addButton UI values
         imageSelected = false
         textField.text = ""
         imageAddButton.setImage(UIImage(named: "add-image"), for: .normal)
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let desitnation = segue.destination as? ProfileVC {
+            if let profile = sender as? Profile {
+                desitnation.profile = profile
+            }
+        }
+    }
+    
+    
+    
+    
 
+  
+    
+    @IBAction func navProfileImageTapped(_ sender: DesignCircleButton) {
+        DataService.ds.getAuthedProfile { (profile) in
+            self.performSegue(withIdentifier: "ProfileVC", sender: profile)
+        }
+    }
+
+    
+  
+
+    
+    // Custom Delegate for getting tapped cell
+    func didTapUser(tappedProfileId: String) {
+        
+        let user = DataService.ds.REF_USERS.child(tappedProfileId)
+        
+        DataService.ds.getTappedProfile(profile: user) { (profile) in
+            // When we have the profile go to Profile VC
+            print("performSegue user: \(user)")
+            self.performSegue(withIdentifier: "ProfileVC", sender: profile)
+        }
+    }
+    
+    
+    
     @IBAction func signoutBtnTapped(_ sender: UIButton) {
         
         let keychain = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
-        print("RASMUS: Removed UID from keychain: \(keychain)")
+        print("MESSAGE: Removed UID from keychain: \(keychain)")
         
         let firebaseAuth = FIRAuth.auth()
         do {
             try firebaseAuth?.signOut()
-            print("RASMUS: Successfully signed out")
+            print("MESSAGE: Successfully signed out")
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    
 
+}
+
+
+protocol MyCellDelegate {
+    func didTapUser(tappedProfileId: String)
 }
