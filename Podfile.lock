@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.2.0)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -57,6 +58,7 @@ PODS:
   - SwiftKeychainWrapper (3.0.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
   - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
@@ -65,6 +67,7 @@ DEPENDENCIES:
   - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
   FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
@@ -81,6 +84,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: fcfabbbb242827f257e12c934beab0b394971482
+PODFILE CHECKSUM: f9457cdf761e48c4ba07d1704a0a1301b86946ca
 
 COCOAPODS: 1.1.1

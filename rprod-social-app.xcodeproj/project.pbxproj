@@ -18,6 +18,7 @@
 		F94573191E1BE8A800B98878 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94573181E1BE8A800B98878 /* ProfileVC.swift */; };
 		F945731B1E1BEC2000B98878 /* DesignCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F945731A1E1BEC2000B98878 /* DesignCornerView.swift */; };
 		F945731D1E1C64A300B98878 /* DesignCornerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F945731C1E1C64A300B98878 /* DesignCornerButton.swift */; };
+		F9AD969B1E243EC500A35AAE /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AD969A1E243EC500A35AAE /* Album.swift */; };
 		F9B27A4D1E19BC0D000FE214 /* DesignShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B27A4C1E19BC0D000FE214 /* DesignShadowView.swift */; };
 		F9B27A501E19BC94000FE214 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B27A4F1E19BC94000FE214 /* Constants.swift */; };
 		F9B27A521E19BDF0000FE214 /* DesignCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B27A511E19BDF0000FE214 /* DesignCircleButton.swift */; };
@@ -48,6 +49,7 @@
 		F94573181E1BE8A800B98878 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		F945731A1E1BEC2000B98878 /* DesignCornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCornerView.swift; sourceTree = "<group>"; };
 		F945731C1E1C64A300B98878 /* DesignCornerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCornerButton.swift; sourceTree = "<group>"; };
+		F9AD969A1E243EC500A35AAE /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		F9B27A4C1E19BC0D000FE214 /* DesignShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignShadowView.swift; sourceTree = "<group>"; };
 		F9B27A4F1E19BC94000FE214 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F9B27A511E19BDF0000FE214 /* DesignCircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignCircleButton.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				F9F5DC331E1AA2FF000FF32E /* Post.swift */,
 				F902EB7F1E1DA7CD00091B16 /* Profile.swift */,
+				F9AD969A1E243EC500A35AAE /* Album.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				F902EB931E22DC6C00091B16 /* NavigationHelper.swift in Sources */,
 				F9B27A4D1E19BC0D000FE214 /* DesignShadowView.swift in Sources */,
 				F9B27A501E19BC94000FE214 /* Constants.swift in Sources */,
+				F9AD969B1E243EC500A35AAE /* Album.swift in Sources */,
 				F9B27A521E19BDF0000FE214 /* DesignCircleButton.swift in Sources */,
 				F9F5DC321E1A8CB8000FF32E /* DataService.swift in Sources */,
 			);
